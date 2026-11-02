@@ -245,6 +245,9 @@
     if (!p || !page) return;
     fill(p);
     if (!page.open) page.showModal();
+    // fill() renders the rows while the dialog is still closed, so its own
+    // guard skips the lookup; run it now that the rows are in the document.
+    loadDates();
     $('#pp-body').scrollTop = 0;
     history.replaceState(null, '', '#pack-' + p.id);
   }
