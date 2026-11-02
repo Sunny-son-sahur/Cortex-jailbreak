@@ -232,11 +232,16 @@
     $('#pp-note').textContent = n
       ? `Each ZIP holds one ${p.file}, inside a folder named cortex-${p.id}.`
       : `When ${p.name} lands, its ZIP will hold a single ${p.file}.`;
-    $('#pp-steps').innerHTML = [
-      ['Pick your model', n ? 'Choose the one that matches the app you use.' : 'Models appear here as they are released.'],
-      ['Download or copy', 'Download the ZIP and unzip it, or copy the text straight out.'],
-      [`Use it`, `Select the unzipped folder as your workspace, or paste the text into ${esc(p.name)}.`]
-    ].map(([t, s]) => `<li><b>${esc(t)}</b> ${esc(s)}</li>`).join('');
+    // Setup differs model by model — dropping a folder into Claude Code is not
+    // pasting into Grok's project instructions — so these come from the model,
+    // never from one list shared by every pack.
+    $('#pp-steps').innerHTML = n
+      ? liveModels(p).map(m => `
+          <div class="step-group">
+            ${n > 1 ? `<p class="step-name">${esc(m.name)}</p>` : ''}
+            <ol>${(m.steps || ['Download or copy the prompt.']).map(s => `<li>${esc(s)}</li>`).join('')}</ol>
+          </div>`).join('')
+      : '<p class="pp-note">Steps appear here when a model is released.</p>';
     if (page.open) loadDates();
   }
 

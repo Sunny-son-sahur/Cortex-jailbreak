@@ -5,6 +5,8 @@
      packs/<pack id>/<model id>.zip   what the Download button sends
 
    note:    the instruction line shown under the model name.
+   steps:   how that model is actually set up. Every model is used differently,
+            so these are per model, never a list shared by the whole pack.
    updated: only a fallback. The real date is read from GitHub (see app.js) and
             only shown as this if that request fails.
    Models with no note simply show the date.
@@ -15,8 +17,10 @@ window.PACKS = [
     symbol: '◉', logo: 'assets/logos/chatgpt.svg', file: 'AGENTS.md',
     blurb: 'Everyday writing, thinking and problem-solving.',
     models: [
-      { id: 'md7dbcd87', name: '6.1 SOL — API', note: 'Unzip and select the unzipped folder as your workspace in your harness.', updated: '2026-10-29T21:02:35Z' },
-      { id: 'm0b28343c', name: 'ASTRA 6 — soft', note: 'Paste as your first message into chat.', updated: '2026-10-29T20:58:40Z' }
+      { id: 'md7dbcd87', name: '6.1 SOL — API', note: 'Unzip and select the unzipped folder as your workspace in your harness.', updated: '2026-10-29T21:02:35Z',
+        steps: ['Unzip cortex-chatgpt.zip.', 'Select the unzipped folder as your workspace in your harness.', 'Run it — AGENTS.md is read from the folder.'] },
+      { id: 'm0b28343c', name: 'ASTRA 6 — soft', note: 'Paste as your first message into chat.', updated: '2026-10-29T20:58:40Z',
+        steps: ['Open a new chat in ChatGPT.', 'Paste the prompt as your first message.', 'Send it — every reply after that follows it.'] }
     ]
   },
   {
@@ -24,8 +28,10 @@ window.PACKS = [
     symbol: '✳', logo: 'assets/logos/claude.svg', file: 'CLAUDE.md',
     blurb: 'Structured briefs and long-form projects.',
     models: [
-      { id: 'm90be2b8f', name: 'Opus 4.7 — full', note: 'Unzip and select the unzipped folder as your workspace in Claude Code.', updated: '2026-10-29T21:04:18Z' },
-      { id: 'mb59b01e7', name: 'Sonnet 4.6 — free', note: 'Paste into project instructions.', updated: '2026-10-29T20:52:11Z' }
+      { id: 'm90be2b8f', name: 'Opus 4.7 — full', note: 'Unzip and select the unzipped folder as your workspace in Claude Code.', updated: '2026-10-29T21:04:18Z',
+        steps: ['Unzip cortex-claude.zip.', 'Select the unzipped folder as your workspace in Claude Code.', 'CLAUDE.md is read on its own — start typing.'] },
+      { id: 'mb59b01e7', name: 'Sonnet 4.6 — free', note: 'Paste into project instructions.', updated: '2026-10-29T20:52:11Z',
+        steps: ['Open the Claude project you want to use.', 'Paste the prompt into that project’s instructions.', 'Save, then chat inside the project.'] }
     ]
   },
   {
@@ -33,7 +39,8 @@ window.PACKS = [
     symbol: '𝕏', logo: 'assets/logos/grok.svg', file: 'AGENTS.md',
     blurb: 'Direct answers and deliberate conversation.',
     models: [
-      { id: 'm51548b3f', name: 'Grok Web — free', note: 'Paste the prompt into project instructions.', updated: '2026-10-29T19:54:02Z' }
+      { id: 'm51548b3f', name: 'Grok Web — free', note: 'Paste the prompt into project instructions.', updated: '2026-10-29T19:54:02Z',
+        steps: ['Open Grok on the web.', 'Paste the prompt into project instructions.', 'Send “hey” to start.'] }
     ]
   },
   {
@@ -41,8 +48,10 @@ window.PACKS = [
     symbol: '≈', logo: 'assets/logos/deepseek.svg', file: 'AGENTS.md',
     blurb: 'Technical briefs and step-by-step reasoning.',
     models: [
-      { id: 'mf8e53157', name: 'V4.1 Flash 1017 — API', note: '', updated: '2026-10-29T19:31:15Z' },
-      { id: 'm69cfb5f2', name: 'Web — paste as original', note: 'Deepthink on, Search on.', updated: '2026-10-29T19:26:11Z' }
+      { id: 'mf8e53157', name: 'V4.1 Flash 1017 — API', note: '', updated: '2026-10-29T19:31:15Z',
+        steps: ['Unzip cortex-deepseek.zip.', 'Point your harness at the folder — AGENTS.md is picked up.', 'Call the model as usual.'] },
+      { id: 'm69cfb5f2', name: 'Web — paste as original', note: 'Deepthink on, Search on.', updated: '2026-10-29T19:26:11Z',
+        steps: ['Open DeepSeek on the web.', 'Turn Deepthink on and Search on.', 'Paste the prompt exactly as it is, then send.'] }
     ]
   },
   {
@@ -50,7 +59,8 @@ window.PACKS = [
     symbol: '▢', logo: 'assets/logos/opencode.svg', file: 'AGENTS.md',
     blurb: 'Terminal-first coding with an open-source agent.',
     models: [
-      { id: 'm753d774f', name: 'Universal Prompt', note: 'Unzip and select the unzipped folder as your workspace in OpenCode.', updated: '2026-10-29T19:03:27Z' }
+      { id: 'm753d774f', name: 'Universal Prompt', note: 'Unzip and select the unzipped folder as your workspace in OpenCode.', updated: '2026-10-29T19:03:27Z',
+        steps: ['Unzip cortex-opencode.zip.', 'Select the unzipped folder as your workspace in OpenCode.', 'Ask it anything.'] }
     ]
   },
   { id: 'gemini', name: 'Gemini', provider: 'Google', type: 'chat', symbol: '✦', logo: 'assets/logos/gemini.svg', file: 'GEMINI.md', blurb: 'Open-ended ideas into reusable instructions.', models: [] },

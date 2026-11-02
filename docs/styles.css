@@ -306,6 +306,11 @@ button { cursor: pointer; background: none; border: 0; padding: 0; }
 .pp-panel li + li { margin-top: 6px; }
 .pp-panel li b { color: var(--text-2); font-weight: 500; }
 .pp-note { margin: 10px 0 0; font-size: .8125rem; color: var(--dim); }
+.pp-steps { display: grid; gap: 13px; }
+.pp-steps ol { margin: 0; padding-left: 17px; color: var(--muted); font-size: .875rem; }
+.pp-steps ol li + li { margin-top: 5px; }
+.step-name { margin: 0 0 6px; font-family: var(--mono); font-size: .6875rem; text-transform: uppercase; letter-spacing: .07em; color: var(--text-2); font-weight: 500; }
+.step-group + .step-group { border-top: 1px solid var(--line); padding-top: 13px; }
 
 /* ---------- Forum & chat ---------- */
 .subpage { padding: clamp(28px, 5vw, 48px) 0 clamp(48px, 7vw, 76px); }
