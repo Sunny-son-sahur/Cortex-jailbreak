@@ -67,13 +67,16 @@
   const DAY = 86400000;
   const ghDate = async path => {
     if (!cfg.repo) return null;
-    const key = `cx:gh:${cfg.repo}:${path}`;
+    // The file's path inside the repo, which is not the same as its path on the
+    // site: Pages serves a subfolder, so packs/… lives at <repoDir>/packs/… .
+    const repoPath = (cfg.repoDir ? cfg.repoDir.replace(/\/+$/, '') + '/' : '') + path;
+    const key = `cx:gh:${cfg.repo}:${repoPath}`;
     try {
       const c = JSON.parse(localStorage.getItem(key) || 'null');
       if (c && Date.now() - c.t < DAY && c.d) return c.d;
     } catch { /* private mode */ }
     try {
-      const url = `https://api.github.com/repos/${cfg.repo}/commits?path=${encodeURIComponent(path)}&sha=${encodeURIComponent(cfg.branch || 'main')}&per_page=1`;
+      const url = `https://api.github.com/repos/${cfg.repo}/commits?path=${encodeURIComponent(repoPath)}&sha=${encodeURIComponent(cfg.branch || 'main')}&per_page=1`;
       const r = await fetch(url, { headers: { Accept: 'application/vnd.github+json' } });
       if (!r.ok) return null;
       const j = await r.json();

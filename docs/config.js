@@ -15,6 +15,10 @@ window.CORTEX = {
   repo: 'Sunny-son-sahur/Cortex-jailbreak',
   branch: 'main',
   packsDir: 'packs',
+  // Folder inside the repo that Pages serves. The "Updated" dates ask GitHub
+  // about files at <repoDir>/packs/... — set this to '' if the site ever moves
+  // to the repo root.
+  repoDir: 'docs',
   api: '',
   poll: 6000
 };
