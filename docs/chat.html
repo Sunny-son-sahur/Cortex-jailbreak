@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fb0103">
+<title>Chat — Cortex Jailbreaks</title>
+<meta name="description" content="Open rooms on Cortex Jailbreaks. Make your own, talk to whoever is around.">
+<link rel="icon" href="assets/mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1"/></symbol>
+  <symbol id="i-forum" viewBox="0 0 24 24"><path d="M4.5 5h10A1.5 1.5 0 0 1 16 6.5v6a1.5 1.5 0 0 1-1.5 1.5H9l-3.5 2.5V14h-1A1.5 1.5 0 0 1 3 12.5v-6A1.5 1.5 0 0 1 4.5 5z"/><path d="M16 8.5h3.5A1.5 1.5 0 0 1 21 10v6a1.5 1.5 0 0 1-1.5 1.5h-1V20L15 17.5h-3.5A1.5 1.5 0 0 1 10 16v-2"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 5.5h14a1.5 1.5 0 0 1 1.5 1.5v8.5A1.5 1.5 0 0 1 19 17h-8l-4.5 3.5V17H5a1.5 1.5 0 0 1-1.5-1.5V7A1.5 1.5 0 0 1 5 5.5z"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24"><path d="m14.5 6-6 6 6 6"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5.5M12 7.6v.2"/></symbol>
+  <symbol id="i-hash" viewBox="0 0 24 24"><path d="M9.5 4 8 20M16 4l-1.5 16M4.5 9h15M4 15h15"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-discord" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/></symbol>
+</defs></svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Cortex Jailbreaks home">
+      <span class="brand-mark"><img src="assets/mark.png" alt="" width="26" height="26"></span>
+      <span class="brand-word">Cortex <i>Jailbreaks</i></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html"><svg class="ico"><use href="#i-grid"/></svg>Packs</a>
+      <a href="forum.html"><svg class="ico"><use href="#i-forum"/></svg>Forum</a>
+      <a href="chat.html" aria-current="page"><svg class="ico"><use href="#i-chat"/></svg>Chat</a>
+    </nav>
+    <div class="head-actions">
+      <a class="discord-btn" id="discord-top" target="_blank" rel="noopener" aria-label="Join the Discord"><svg class="ico"><use href="#i-discord"/></svg><span>Discord</span></a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobile-menu" hidden>
+  <a href="index.html"><svg class="ico"><use href="#i-grid"/></svg>Packs</a>
+  <a href="forum.html"><svg class="ico"><use href="#i-forum"/></svg>Forum</a>
+  <a href="chat.html"><svg class="ico"><use href="#i-chat"/></svg>Chat</a>
+  <a id="discord-menu" target="_blank" rel="noopener"><svg class="ico"><use href="#i-discord"/></svg>Discord</a>
+</div>
+
+<main class="subpage" id="main">
+  <div class="wrap">
+    <div class="subpage-top">
+      <div>
+        <h1>Chat</h1>
+        <p>Open rooms. Make your own and it is there for anyone who opens it.</p>
+      </div>
+      <a class="btn" href="forum.html"><svg class="ico"><use href="#i-forum"/></svg>Go to the forum</a>
+    </div>
+
+    <div id="mode-banner"></div>
+
+    <!-- Rooms -->
+    <div id="rooms-view">
+      <form class="composer" id="new-room" autocomplete="off">
+        <h2>Make a room</h2>
+        <label class="field"><span>Your name</span><input id="nr-name" maxlength="28" required placeholder="How you show up"></label>
+        <label class="field"><span>Room name</span><input id="nr-title" maxlength="40" required placeholder="e.g. claude-code"></label>
+        <div class="composer-row">
+          <button class="btn btn-primary" type="submit" id="nr-submit">Create room<svg class="ico"><use href="#i-send"/></svg></button>
+          <span class="hint" id="nr-hint"></span>
+        </div>
+      </form>
+
+      <ul class="room-list" id="rooms"></ul>
+      <div class="empty-state" id="rooms-empty" hidden>No rooms yet. Make the first one.</div>
+    </div>
+
+    <!-- Room -->
+    <div id="room-view" hidden>
+      <a class="back-link" href="chat.html"><svg class="ico"><use href="#i-left"/></svg>All rooms</a>
+      <div class="subpage-top" style="margin-bottom:14px">
+        <div>
+          <h1 id="r-title"></h1>
+          <p class="mono" id="r-meta"></p>
+        </div>
+      </div>
+      <div class="room-feed" id="feed"></div>
+      <form class="chat-form" id="send" autocomplete="off">
+        <input id="msg" maxlength="1000" placeholder="Message the room…" aria-label="Message" required>
+        <button class="btn btn-primary" type="submit" id="send-btn"><svg class="ico"><use href="#i-send"/></svg>Send</button>
+      </form>
+      <p class="mono" id="chat-hint" style="margin-top:10px;color:var(--dim);font-size:.6875rem"></p>
+    </div>
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-bottom" style="margin-top:0;border-top:0;padding-top:0">
+      <span>© <span id="year">2026</span> Cortex Jailbreaks</span>
+      <a href="index.html">Packs</a>
+      <a href="forum.html">Forum</a>
+      <a id="discord-foot" target="_blank" rel="noopener">Discord</a>
+    </div>
+  </div>
+</footer>
+
+<div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+
+<script src="config.js"></script>
+<script src="social.js"></script>
+<script src="chat.js"></script>
+</body>
+</html>

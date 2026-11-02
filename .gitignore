@@ -1,0 +1,13 @@
+# local only
+image.png
+.freebuff/
+.cloud-attachments/
+
+# the site being replaced, and archived scrapes
+ojailbreaks.com/
+dock.zip
+
+# build chatter
+__pycache__/
+*.pyc
+.DS_Store

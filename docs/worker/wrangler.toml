@@ -1,0 +1,16 @@
+name = "cortex-social"
+main = "index.js"
+compatibility_date = "2026-01-01"
+
+# The D1 database. After `wrangler d1 create cortex-social`, paste the id you
+# are given into database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "cortex-social"
+database_id = "PASTE-THE-ID-HERE"
+
+# Lock the API to your site once it is live, e.g.
+#   ALLOWED_ORIGIN = "https://yourname.github.io"
+# Leaving it unset allows any origin to call this API.
+[vars]
+ALLOWED_ORIGIN = "*"

@@ -1,0 +1,20 @@
+/* Cortex Jailbreaks — one place for the things you might change.
+
+   api: leave empty ('') and the forum and chat work per-browser only: posts save in
+        the visitor's own browser. Set it to your Worker's URL (see worker/README.md)
+        and they become shared between everyone. GitHub Pages alone cannot store
+        posts, so an empty api means local-only, not broken.
+
+   repo/branch: where the pack files live on GitHub. The "Updated" date under each
+        model is read from the last commit that touched that file, so it stays right
+        by itself. Keep this repo public or the lookup will fail.
+*/
+window.CORTEX = {
+  name: 'Cortex Jailbreaks',
+  discord: 'https://discord.gg/CKpvwSRbB',
+  repo: 'Sunny-son-sahur/Cortex-jailbreak',
+  branch: 'main',
+  packsDir: 'packs',
+  api: '',
+  poll: 6000
+};
