@@ -1,21 +1,62 @@
 /* Cortex Jailbreaks — forum and chat back end.
 
-   Deploy with Wrangler (see README.md next to this file), then put its URL in
-   site/config.js as CORTEX.api. Until then the pages store posts in the visitor's
-   browser instead.
+   Deploy it (see README.md next to this file), then put its URL in docs/config.js
+   as CORTEX.api. Until then the pages store posts in the visitor's browser.
 
    Bindings:
-     DB            D1 database (schema.sql)
-     ALLOWED_ORIGIN  optional, e.g. https://yourname.github.io
+     DB              D1 database. The tables are created on the first request,
+                     so there is no SQL to run by hand after deploying.
+     ALLOWED_ORIGIN  optional extra origin, comma separated.
 */
 
 const MAX = { title: 120, body: 4000, author: 28, room: 40, message: 1000 };
 
+// Where the site is served from. The API only answers these origins, so another
+// website cannot post to your forum through a visitor's browser.
+const SITE_ORIGINS = [
+  'https://sunny-son-sahur.github.io',
+  'http://127.0.0.1:8410',
+  'http://localhost:8410'
+];
+
+const SCHEMA = [
+  `CREATE TABLE IF NOT EXISTS threads (
+     id TEXT PRIMARY KEY, title TEXT NOT NULL, author TEXT NOT NULL,
+     created_at TEXT NOT NULL, last_at TEXT NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS posts (
+     id TEXT PRIMARY KEY, thread_id TEXT NOT NULL REFERENCES threads(id) ON DELETE CASCADE,
+     author TEXT NOT NULL, body TEXT NOT NULL, created_at TEXT NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS posts_by_thread ON posts(thread_id, created_at)`,
+  `CREATE TABLE IF NOT EXISTS rooms (
+     id TEXT PRIMARY KEY, name TEXT NOT NULL, author TEXT NOT NULL,
+     created_at TEXT NOT NULL, last_at TEXT NOT NULL)`,
+  `CREATE TABLE IF NOT EXISTS messages (
+     id TEXT PRIMARY KEY, room_id TEXT NOT NULL REFERENCES rooms(id) ON DELETE CASCADE,
+     author TEXT NOT NULL, body TEXT NOT NULL, created_at TEXT NOT NULL)`,
+  `CREATE INDEX IF NOT EXISTS messages_by_room ON messages(room_id, created_at)`
+];
+
+// Once per isolate: the tables exist after the first request, and every later
+// one reuses this promise instead of asking D1 again.
+let ready = null;
+function ensureSchema(env) {
+  if (!ready) {
+    ready = env.DB.batch(SCHEMA.map(sql => env.DB.prepare(sql))).catch(err => {
+      ready = null;
+      throw err;
+    });
+  }
+  return ready;
+}
+
 export default {
   async fetch(request, env) {
-    const origin = env.ALLOWED_ORIGIN || '*';
+    const allowed = SITE_ORIGINS.concat(
+      String(env.ALLOWED_ORIGIN || '').split(',').map(o => o.trim()).filter(Boolean)
+    );
+    const from = request.headers.get('Origin') || '';
     const cors = {
-      'Access-Control-Allow-Origin': origin,
+      'Access-Control-Allow-Origin': allowed.includes(from) ? from : allowed[0],
       'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Max-Age': '86400',
@@ -47,6 +88,8 @@ export default {
     const ok = (v, max) => typeof v === 'string' && v.trim().length > 0 && v.trim().length <= max;
 
     try {
+      await ensureSchema(env);
+
       /* ---------- threads ---------- */
       if (path === '/threads' && method === 'GET') {
         const { results } = await env.DB.prepare(`

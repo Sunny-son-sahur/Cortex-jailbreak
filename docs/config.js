@@ -19,6 +19,6 @@ window.CORTEX = {
   // about files at <repoDir>/packs/... — set this to '' if the site ever moves
   // to the repo root.
   repoDir: 'docs',
-  api: '',
+  api: 'https://site-b2934d4df68d43e79d57c5ff2c23572e.freebuff.page',
   poll: 6000
 };
