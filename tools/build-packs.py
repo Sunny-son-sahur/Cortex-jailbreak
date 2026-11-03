@@ -2,8 +2,10 @@
 """Turn the downloaded files in jailbreaks/ into what the site serves.
 
 For every model it writes:
-    site/packs/<pack>/<model>.md    the text the Copy button copies
-    site/packs/<pack>/<model>.zip   cortex-<pack>/<FILE> inside, for Download
+    docs/packs/<pack>/<model>.md    the text the Copy button copies
+    docs/packs/<pack>/<model>.zip   cortex-<pack>/<FILE> inside, for Download
+
+docs/ is what GitHub Pages serves, so a run here updates the live site.
 
 Run from anywhere:  python3 tools/build-packs.py
 """
@@ -15,8 +17,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "jailbreaks"
-OUT = ROOT / "site" / "packs"
-ASSETS = ROOT / "site" / "assets"
+OUT = ROOT / "docs" / "packs"
+ASSETS = ROOT / "docs" / "assets"
 
 # pack id, model id, filename inside the ZIP, glob that finds the source file
 MAP = [
