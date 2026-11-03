@@ -1,9 +1,14 @@
 # Forum and chat back end
 
-The site works without this. With `CORTEX.api` empty in `site/config.js`, the forum
+The site works without this. With `CORTEX.api` empty in `docs/config.js`, the forum
 and chat save posts in each visitor's own browser — real pages, real posting, but
 nothing shared. GitHub Pages cannot store anything, so that is the only option
 without a server.
+
+**Already deployed.** The forum and chat are shared right now: `docs/config.js`
+holds the Worker URL in `api`, and the Worker runs on Freebuff Sites with a D1
+database bound as `DB`. Nothing in the site is browser-local any more. The rest
+of this file is how to redeploy it, or how to run your own copy elsewhere.
 
 Point `CORTEX.api` at this Worker and both become genuinely shared.
 
@@ -34,7 +39,7 @@ wrangler deploy
 ```
 
 `deploy` prints a URL like `https://cortex-social.yourname.workers.dev`. Put that in
-`site/config.js`:
+`docs/config.js`:
 
 ```js
 api: 'https://cortex-social.yourname.workers.dev',
